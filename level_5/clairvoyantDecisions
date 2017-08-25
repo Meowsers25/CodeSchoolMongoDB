@@ -1,0 +1,7 @@
+db.wands.aggregate([
+  {"$match": {"level_required": {"$lte": 5}}},
+  {"$project": {"maker": true, "damage.magic": true, "_id": false}},
+  {"$group": {"_id": "$maker", "max_damage": {"$max": "$damage.magic"}}},
+  {"$sort": {"max_damage": -1}},
+  {"$limit": 4}
+])

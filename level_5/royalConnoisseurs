@@ -1,0 +1,3 @@
+db.wands.aggregate(
+[{"$group": {"_id": "$maker", "total_cost": {"$sum": "$price"}}}]
+)
